@@ -1,0 +1,31 @@
+@* setting page title *@
+@{
+    ViewData["Title"] = "Catalog";
+}
+@* ref to db context *@
+@model ProductCatalog.DAO.ProductDbContext
+<h1>Product Catalog</h1>
+@* card group *@
+@if (@Model.products.Count()>0)
+{
+<div class="card-columns">
+    @* iterate over product db set *@
+    @foreach (ProductModel item in @Model.products)
+    {
+        @* render card with product info *@
+        <div class = "card border-primary">
+            <div class="card-body">
+                <h5 class="card-title text-primary">@item.productName</h5>
+                <p class="card-text">$ @item.price | @item.quantity items</p>
+            </div>
+        </div>
+    }
+</div>
+}
+else
+{
+    <div>
+        <hr/>
+        <h3>No Products to Display</h3>
+    </div>
+}
