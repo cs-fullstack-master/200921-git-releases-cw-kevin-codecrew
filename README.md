@@ -69,3 +69,62 @@ Add views and actions to edit and delete products ON TRUNK (branch 'master')
 * Merge changes back to trunk *
 
 
+# Notes on Release steps
+```
+dotnet new mvc -o ProductCatalog
+dotnet tool update --global dotnet-ef
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite
+dotnet add package Microsoft.AspNetCore.MVC.Razor.RuntimeCompilation
+```
+Create Product model
+```
+Create dbContext and dbset of 'products'
+Update appsettings.json for datasource
+Wire dbContext and Razor compliation to Startup.cs
+Create migrations and apply to database
+```
+
+*** Create initial Release ***
+```
+git branch CODE_FREEZE_1_09222020
+git checkout CODE_FREEZE_1_09222020
+git commit -m "Initial commit"
+git tag -a v01.00.00 -m "Release 1.x"
+git push origin CODE_FREEZE_1_09222020 --tags
+* Update release from tag
+```
+
+*** Create minor release
+```
+Create a bug ticket for something that needs changed
+git commit -m "Fixed whatever ticket"
+git tag -a v01.01.00 -m "Release 1.1.0"
+git push origin CODE_FREEZE_1_09222020 --tags
+* create 2nd release from tag and close ticket(s)
+Open pull request
+Merge changes to Master branch
+```
+********************************
+Implement delete and edit
+********************************
+*** Create 2.x Release ***
+```
+git branch CODE_FREEZE_2_09222020
+git checkout CODE_FREEZE_2_09222020
+git commit -m "Version 2.x release"
+git tag -a v02.00.00 -m "Release 2.x"
+git push origin CODE_FREEZE_2_09222020 --tags
+* create release from tag
+```
+
+*** Create minor release
+```
+Create a bug ticket for something that needs changed
+git commit -m "Fixed whatever ticket"
+git tag -a v02.01.00 -m "Release 2.1.0"
+git push origin CODE_FREEZE_2_09222020 --tags
+* create 2nd release from tag and close ticket(s)
+Open pull request
+Merge changes to Master branch
+```
