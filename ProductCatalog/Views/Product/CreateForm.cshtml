@@ -1,0 +1,28 @@
+@* setting page title *@
+@{
+    ViewData["Title"] = "Add";
+}
+@* ref to Product model *@
+@model ProductCatalog.Models.ProductModel
+<h1>Add a Product</h1>
+@* model bound form *@
+@using (@Html.BeginForm("Add", "Product"))
+{
+    @Html.ValidationSummary()
+    <div class="form-group">
+        @Html.LabelFor(p => p.productName, new{@class = "form-control-label"})
+        @Html.TextBoxFor(p => p.productName, new{@class = "form-control"}) 
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(p => p.price, new{@class = "form-control-label"})
+        @Html.TextBoxFor(p => p.price, new{@class = "form-control"})  
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(p => p.quantity, new{@class = "form-control-label"})
+        @Html.TextBoxFor(p => p.quantity, new{@class = "form-control"})   
+    </div>
+
+    <button class = "btn btn-primary" type="submit">Add Product</button>
+}
